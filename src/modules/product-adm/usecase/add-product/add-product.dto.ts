@@ -13,5 +13,5 @@ export interface AddProductOutputDto {
     purchasePrice: number;
     stock: number;
     createdAt: Date;
-    updateAt: Date;
+    updatedAt: Date;
 }

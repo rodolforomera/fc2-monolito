@@ -31,8 +31,8 @@ export default class AddProductUseCase implements UseCaseInterface {
             description: product.description,
             purchasePrice: product.purchasePrice,
             stock: product.stock,
-            createdAt: product.createAt,
-            updateAt: product.updateAt
+            createdAt: product.createdAt,
+            updatedAt: product.updatedAt
         }
 
     }
