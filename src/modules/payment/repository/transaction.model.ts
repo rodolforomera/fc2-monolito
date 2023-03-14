@@ -19,10 +19,10 @@ export class TransactionModel extends Model {
     @Column({ allowNull: false })
     status: string;
 
-    @Column({ allowNull: false, field: "created_at" })
+    @Column({ allowNull: false })
     createdAt: Date;
 
-    @Column({ allowNull: false, field: "updated_at" })
+    @Column({ allowNull: false })
     updatedAt: Date;
 
 }

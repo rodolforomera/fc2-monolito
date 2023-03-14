@@ -4,7 +4,7 @@ import ProductGateway from "../gateway/product.gateway";
 import ProductModel from "./product.model";
 
 export default class ProductRepository implements ProductGateway {
-    
+
     async findAll(): Promise<Product[]> {
         const products = await ProductModel.findAll();
         return products.map((product) => 
@@ -17,19 +17,37 @@ export default class ProductRepository implements ProductGateway {
         ); 
     }
     
-    async find(id: string): Promise<Product> {
+    async find(id: string): Promise<Product | null> {
         const product = await ProductModel.findOne({
             where: {
                 id: id,
             },
         });
+        
+        if (product) {
+            return new Product({
+                id: new Id(product.id),
+                name: product.name,
+                description: product.description,
+                salesPrice: product.salesPrice,
+            });
+        }else{
+            return null;
+        }
+    }
+    
+    async update(product: Product): Promise<void> {
 
-        return new Product({
-            id: new Id(product.id),
+        await ProductModel.update({
             name: product.name,
             description: product.description,
             salesPrice: product.salesPrice,
+        }, {
+            where: {
+                id: product.id.id
+            }
         });
-    }
 
+    }
+    
 }
